@@ -13,9 +13,13 @@ export default class App extends React.Component {
     };
   }
 
-  AddCol = () => this.setState({ cols: this.state.cols + 1 });
+  addCol = () => this.setState({ cols: this.state.cols + 1 });
 
-  AddRow = () => this.setState({ rows: this.state.rows + 1 });
+  addRow = () => this.setState({ rows: this.state.rows + 1 });
+
+  removeCol = () => this.setState({ cols: this.state.cols - 1 });
+
+  removeRow = () => this.setState({ rows: this.state.rows - 1 });
 
   displayCols = () => {
         
@@ -52,12 +56,20 @@ export default class App extends React.Component {
     return (
 
       <div className="App">
-        <button tyep="button" onClick={this.AddCol}>
+        <button tyep="button" onClick={this.addCol}>
           Increment Col
         </button>
 
-        <button tyep="button" onClick={this.AddRow}>
+        <button tyep="button" onClick={this.addRow}>
           Increment Row
+        </button>
+
+        <button tyep="button" onClick={this.removeCol}>
+          Decrement Col
+        </button>
+
+        <button tyep="button" onClick={this.removeRow}>
+        Decrement Row
         </button>
 
         <select>
