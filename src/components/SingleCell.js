@@ -1,10 +1,11 @@
-import {React, Component} from "react";
+import React from "react";
 import "./SingleCell.css";
 
-export default class SingleCell extends Component {
+export default class SingleCell extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             cellColor: ""
         };

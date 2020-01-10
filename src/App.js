@@ -1,8 +1,8 @@
-import {React, Component} from "react";
+import React from "react";
 import {TableRow, SingleCell} from "./components";
 import "./App.css";
 
-export default class App extends Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
