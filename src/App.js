@@ -8,9 +8,11 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cols: 0,
-      rows: 0,
-      color: ""
+      cols: 1,
+      rows: 1,
+      color: "",
+      fillAll: false,
+      fillUncolored: false
     };
   }
 
@@ -26,13 +28,27 @@ export default class App extends React.Component {
       return this.state.color;
   }
 
+  myStates = () => {
+
+    let status = this.state;
+
+    if(this.state.fillAll || this.state.fillUncolored) {
+        this.setState({
+            fillAll: false,
+            fillUncolored: false
+        });
+    }
+
+    return status;
+  }
+
   displayCols = () => {
         
     let numCols = this.state.cols;
     let arr = [];
     
     for(let i = 0; i < numCols; i++) {
-        arr.push(<SingleCell color={this.selectColor} />);
+        arr.push(<SingleCell myStates={this.myStates} />);
     }
 
     return arr;
@@ -50,11 +66,21 @@ export default class App extends React.Component {
     return arr;
   }
 
+    fillAllCells = () => {
+        this.setState({
+            fillAll: true
+        })
+    }
+
+    fillAllEmptyCells = () => {
+        this.setState({
+            fillUncolored: true
+        })
+    }
+
 
 
   render() {
-    console.log(this.state.cols);
-    console.log(this.state.rows);
 
     let arr = this.displayRow();
 
@@ -77,8 +103,16 @@ export default class App extends React.Component {
         Decrement Row
         </button>
 
+        <button tyep="button" onClick={this.fillAllCells}>
+            Fill All Cells
+        </button>
+
+        <button tyep="button" onClick={this.fillAllEmptyCells}>
+            Fill All Empty Cells
+        </button>
+
         <select onChange={ (event) => {this.setState({color: event.target.value})}}>
-            <option value="blue">Blue</option>
+            <option value="white">White</option>
             <option value="green">Green</option>
             <option value="red">Red</option>
             <option value="purple">Purple</option>

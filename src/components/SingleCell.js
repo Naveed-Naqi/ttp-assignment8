@@ -7,18 +7,40 @@ export default class SingleCell extends React.Component {
         super(props);
 
         this.state = {
-            selectedColor: this.props.color,
             cellColor: ""
         };
     }
 
     handleColor = () => {
-        console.log(this.state.selectedColor());
-        this.setState({ color: this.state.selectedColor() });
+        this.setState({ cellColor: this.props.myStates().color });
     }
 
     render() {
-        return <td style={{backgroundColor: this.state.color}} onClick={this.handleColor} ></td>;
+
+        let myStates = this.props.myStates();
+
+        let isFilled = myStates.fillAll;
+        let isUnfilled = myStates.fillUncolored;
+
+        if(isFilled) {
+            this.setState({
+                cellColor: this.props.myStates().color
+            })
+        }
+
+        if(isUnfilled && this.state.cellColor === "") {
+
+            this.setState({
+                cellColor: this.props.myStates().color
+            })
+        }
+
+        return (
+            <td
+                style={{backgroundColor: this.state.cellColor}} 
+                onClick={this.handleColor} 
+            ></td>
+        );
     }
 
 }
