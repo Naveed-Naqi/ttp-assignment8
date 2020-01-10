@@ -1,9 +1,6 @@
-import React from 'react'
+import React from "react";
+import "./SingleCell.css";
 
 export default function SingleCell() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <td></td>;
 }
