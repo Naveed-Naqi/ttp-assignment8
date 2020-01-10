@@ -1,15 +1,13 @@
 import React from "react";
-import SingleCell from "./SingleCell";
 import "./SingleCell.css";
 
-export default function TableRow() {
+export default function TableRow({cols}) {
+
   return (
     <div>
-      <SingleCell />
-      <SingleCell />
-      <SingleCell />
-      <SingleCell />
-      <SingleCell />
+      {cols.map( (elem) => {
+        return elem
+      })}
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import TableRow from "./components/TableRow";
 import "./App.css";
+import SingleCell from "./components/SingleCell";
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,11 +17,40 @@ export default class App extends React.Component {
 
   AddRow = () => this.setState({ rows: this.state.rows + 1 });
 
+  displayCols = () => {
+        
+    let numCols = this.state.cols;
+    let arr = [];
+    
+    for(let i = 0; i < numCols; i++) {
+        arr.push(<SingleCell />);
+    }
+
+    return arr;
+}
+
+  displayRow = () => {
+
+    let numRows = this.state.rows;
+    let arr = [];
+
+    for(let i = 0; i < numRows; i++) {
+        arr.push(<TableRow cols = {this.displayCols()} />);
+    }
+
+    return arr;
+  }
+
+
+
   render() {
     console.log(this.state.cols);
     console.log(this.state.rows);
 
+    let arr = this.displayRow();
+
     return (
+
       <div className="App">
         <button tyep="button" onClick={this.AddCol}>
           Increment Col
@@ -29,9 +60,18 @@ export default class App extends React.Component {
           Increment Row
         </button>
 
+        <select>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="red">Red</option>
+            <option value="purple">Purple</option>
+        </select>
+
         <table id="main-grid">
           <tr>
-            <TableRow />
+            {arr.map( (elem) => {
+                return elem;
+            })}
           </tr>
         </table>
       </div>
