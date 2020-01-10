@@ -4,10 +4,11 @@ import "./SingleCell.css";
 export default function TableRow({cols}) {
 
   return (
-    <div>
+
+    <tr>
       {cols.map( (elem) => {
         return elem
       })}
-    </div>
+    </tr>
   );
 }

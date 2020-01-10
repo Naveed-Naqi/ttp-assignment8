@@ -15,6 +15,18 @@ export default class SingleCell extends React.Component {
         this.setState({ cellColor: this.props.myStates().color });
     }
 
+    handleOver= () => {
+
+        let isMouseDown = this.props.myStates().isMouseDown;
+        console.log(isMouseDown);
+
+        if(isMouseDown) {
+            this.setState({
+                cellColor: this.props.myStates().color
+            });
+        }
+    }
+
     render() {
 
         let myStates = this.props.myStates();
@@ -39,6 +51,7 @@ export default class SingleCell extends React.Component {
             <td
                 style={{backgroundColor: this.state.cellColor}} 
                 onClick={this.handleColor} 
+                onMouseOver={this.handleOver}
             ></td>
         );
     }

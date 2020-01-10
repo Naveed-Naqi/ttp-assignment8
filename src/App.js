@@ -12,7 +12,8 @@ export default class App extends React.Component {
       rows: 1,
       color: "",
       fillAll: false,
-      fillUncolored: false
+      fillUncolored: false,
+      isMouseDown: false
     };
   }
 
@@ -48,7 +49,7 @@ export default class App extends React.Component {
     let arr = [];
     
     for(let i = 0; i < numCols; i++) {
-        arr.push(<SingleCell myStates={this.myStates} />);
+        arr.push(<SingleCell key={i} myStates={this.myStates} />);
     }
 
     return arr;
@@ -60,7 +61,7 @@ export default class App extends React.Component {
     let arr = [];
 
     for(let i = 0; i < numRows; i++) {
-        arr.push(<TableRow cols = {this.displayCols()} />);
+        arr.push(<TableRow key={i} cols = {this.displayCols()} />);
     }
 
     return arr;
@@ -118,12 +119,14 @@ export default class App extends React.Component {
             <option value="purple">Purple</option>
         </select>
 
-        <table id="main-grid">
-          <tr>
-            {arr.map( (elem) => {
-                return elem;
-            })}
-          </tr>
+        <table id="main-grid" 
+            onMouseDown={ () => this.setState({isMouseDown: true})}
+            onMouseUp={ () => this.setState({isMouseDown: false})}>
+            <tbody>
+                {arr.map( (elem) => {
+                    return elem;
+                })}
+            </tbody>
         </table>
       </div>
     );
