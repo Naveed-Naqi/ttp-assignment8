@@ -8,8 +8,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cols: 1,
-      rows: 1
+      cols: 0,
+      rows: 0,
+      color: ""
     };
   }
 
@@ -21,13 +22,17 @@ export default class App extends React.Component {
 
   removeRow = () => this.setState({ rows: this.state.rows - 1 });
 
+  selectColor = () => {
+      return this.state.color;
+  }
+
   displayCols = () => {
         
     let numCols = this.state.cols;
     let arr = [];
     
     for(let i = 0; i < numCols; i++) {
-        arr.push(<SingleCell />);
+        arr.push(<SingleCell color={this.selectColor} />);
     }
 
     return arr;
@@ -72,7 +77,7 @@ export default class App extends React.Component {
         Decrement Row
         </button>
 
-        <select>
+        <select onChange={ (event) => {this.setState({color: event.target.value})}}>
             <option value="blue">Blue</option>
             <option value="green">Green</option>
             <option value="red">Red</option>
