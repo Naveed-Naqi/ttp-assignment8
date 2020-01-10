@@ -1,17 +1,40 @@
 import React from "react";
-import SingleCell from "./components/SingleCell";
+import TableRow from "./components/TableRow";
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <table id="main-grid">
-        <tr>
-          <SingleCell />
-        </tr>
-      </table>
-    </div>
-  );
-}
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cols: 1,
+      rows: 1
+    };
+  }
 
-export default App;
+  AddCol = () => this.setState({ cols: this.state.cols + 1 });
+
+  AddRow = () => this.setState({ rows: this.state.rows + 1 });
+
+  render() {
+    console.log(this.state.cols);
+    console.log(this.state.rows);
+
+    return (
+      <div className="App">
+        <button tyep="button" onClick={this.AddCol}>
+          Increment Col
+        </button>
+
+        <button tyep="button" onClick={this.AddRow}>
+          Increment Row
+        </button>
+
+        <table id="main-grid">
+          <tr>
+            <TableRow />
+          </tr>
+        </table>
+      </div>
+    );
+  }
+}
