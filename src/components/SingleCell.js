@@ -5,7 +5,6 @@ export default class SingleCell extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             cellColor: ""
         };
