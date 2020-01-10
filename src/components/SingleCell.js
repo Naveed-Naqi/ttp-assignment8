@@ -15,10 +15,13 @@ export default class SingleCell extends React.Component {
         this.setState({ cellColor: this.props.myStates().color });
     }
 
-    handleOver= () => {
+    /**
+     * Handles the mousing over to change color of the component.
+     */
+
+    handleMouseOver= () => {
 
         let isMouseDown = this.props.myStates().isMouseDown;
-        console.log(isMouseDown);
 
         if(isMouseDown) {
             this.setState({
@@ -27,6 +30,11 @@ export default class SingleCell extends React.Component {
         }
     }
 
+    
+    /**
+     * Changes the state if the props change.
+     * Used for re-rendering the cells for the FillAllCells and FillAllEmptyCells
+     */
     componentDidUpdate(prevProps, prevState) {
 
         if(prevProps !== this.props) {
@@ -35,18 +43,12 @@ export default class SingleCell extends React.Component {
             let isFilled = myStates.fillAll;
             let isUnfilled = myStates.fillUncolored;
     
-            if(isFilled) {
+            if(isFilled || (isUnfilled && this.state.cellColor === "")) {
                 this.setState({
                     cellColor: this.props.myStates().color
                 })
             }
     
-            if(isUnfilled && this.state.cellColor === "") {
-    
-                this.setState({
-                    cellColor: this.props.myStates().color
-                })
-            }
         }
 
     }
@@ -57,7 +59,7 @@ export default class SingleCell extends React.Component {
             <td
                 style={{backgroundColor: this.state.cellColor}} 
                 onClick={this.handleColor} 
-                onMouseOver={this.handleOver}
+                onMouseOver={this.handleMouseOver}
             ></td>
         );
     }

@@ -1,8 +1,6 @@
 import React from "react";
-import TableRow from "./components/TableRow";
+import {TableRow, SingleCell} from "./components";
 import "./App.css";
-import SingleCell from "./components/SingleCell";
-
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,9 +23,9 @@ export default class App extends React.Component {
 
   removeRow = () => this.setState({ rows: this.state.rows - 1 });
 
-  selectColor = () => {
-      return this.state.color;
-  }
+  /**
+   * Gives child component access to parent state.
+   */
 
   myStates = () => {
 
@@ -43,6 +41,11 @@ export default class App extends React.Component {
     return status;
   }
 
+
+  /**
+   * Creates an array holding all SingleCells.
+   */
+
   displayCols = () => {
         
     let numCols = this.state.cols;
@@ -55,17 +58,21 @@ export default class App extends React.Component {
     return arr;
 }
 
-  displayRow = () => {
 
-    let numRows = this.state.rows;
-    let arr = [];
+    /**
+     * Creates an array holding all TableRows
+     */
+    displayRow = () => {
 
-    for(let i = 0; i < numRows; i++) {
-        arr.push(<TableRow key={i} cols = {this.displayCols()} />);
+        let numRows = this.state.rows;
+        let arr = [];
+
+        for(let i = 0; i < numRows; i++) {
+            arr.push(<TableRow key={i} cols = {this.displayCols()} />);
+        }
+
+        return arr;
     }
-
-    return arr;
-  }
 
     fillAllCells = () => {
         this.setState({
