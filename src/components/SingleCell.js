@@ -1,7 +1,7 @@
-import React from "react";
+import {React, Component} from "react";
 import "./SingleCell.css";
 
-export default class SingleCell extends React.Component {
+export default class SingleCell extends Component {
 
     constructor(props) {
         super(props);
